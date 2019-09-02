@@ -28,6 +28,19 @@ batch_size = 32
 #   when True we only update the reshaped layer params
 feature_extract = True
 
+class ImageFolderWithPaths(datasets.ImageFolder):
+    """Custom dataset that includes image file paths. Extends
+    torchvision.datasets.ImageFolder
+    """
+
+    # override the __getitem__ method. this is the method that dataloader calls
+    def __getitem__(self, index):
+        original_tuple = super(ImageFolderWithPaths, self).__getitem__(index)
+
+        path = self.imgs[index][0]
+        tuple_with_path = (original_tuple + (path,))
+        return tuple_with_path
+
 def train_model(model, dataloaders, criterion, optimizer, num_epochs):
     since = time.time()
 
