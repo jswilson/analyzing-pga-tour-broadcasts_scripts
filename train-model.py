@@ -28,6 +28,7 @@ batch_size = 32
 #   when True we only update the reshaped layer params
 feature_extract = True
 
+# h/t https://gist.github.com/andrewjong/6b02ff237533b3b2c554701fb53d5c4d
 class ImageFolderWithPaths(datasets.ImageFolder):
     """Custom dataset that includes image file paths. Extends
     torchvision.datasets.ImageFolder
